@@ -87,10 +87,16 @@ jobs:
           at: ~/
       - pulumi-dependencies
       - run:
+          name: install plugins
+          command: |
+            pulumi plugin install resource aws v4.17.0
+            pulumi plugin install resource kubernetes v3.6.3
+
+      - run:
           name: pulumi up
           working_directory: pulumi
           command: |
-            pulumi stack select $PULUMI_ORG/dependencies
+            pulumi stack select phewitt/common/dependencies
             pulumi config set --path unchained:common.cluster eks
             pulumi config set --path unchained:common.isLocal false
             pulumi config set --path unchained:common.eks.allAZs false
