@@ -48,6 +48,12 @@ commands:
             apt update
             apt install wget unzip
       - run:
+          name: install kubectl
+          command: |
+            curl -LO "https://dl.k8s.io/release/v1.21.3/bin/linux/amd64/kubectl"
+            chmod +x kubectl
+            mv ./kubectl ~/.local/bin/kubectl
+      - run:
           name: install aws-cli
           command: |
             wget -O awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
