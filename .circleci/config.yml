@@ -87,12 +87,6 @@ jobs:
           at: ~/
       - pulumi-dependencies
       - run:
-          name: install plugins
-          command: |
-            pulumi plugin install resource aws v4.17.0
-            pulumi plugin install resource kubernetes v3.6.3
-
-      - run:
           name: pulumi up
           working_directory: pulumi
           command: |
@@ -100,9 +94,9 @@ jobs:
             pulumi config set --path unchained:common.cluster eks
             pulumi config set --path unchained:common.isLocal false
             pulumi config set --path unchained:common.eks.allAZs false
-            pulumi config set --path unchained:common.eks.instanceTypes[0] m5.4xlarge
-            pulumi config set --path unchained:common.eks.instanceTypes[1] m5a.4xlarge
-            pulumi config set --path unchained:common.eks.instanceTypes[2] m5ad.4xlarge
+            pulumi config set --path unchained:common.eks.instanceTypes[0] m5.xlarge
+            pulumi config set --path unchained:common.eks.instanceTypes[1] m5a.xlarge
+            pulumi config set --path unchained:common.eks.instanceTypes[2] m5ad.xlarge
             pulumi config set --path unchained:common.eks.region us-west-2
             pulumi config set --path unchained:common.eks.cidrBlock 10.0.0.0/16
             pulumi config set --path unchained:common.traefik.whitelist[0] 0.0.0.0/0
